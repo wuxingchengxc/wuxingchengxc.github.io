@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Zookeeper之入门篇 | Shawn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为什么学习Zookeeper?当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe. Zookeeper是什么呢？简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件。">
+  <meta name="description" content="为什么学习Zookeeper?当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe. Zookeeper是什么呢？简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软">
 <meta name="keywords" content="分布式,Zookeeper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zookeeper之入门篇">
 <meta property="og:url" content="http://yoursite.com/2016/07/13/Zookeeper之入门篇/index.html">
 <meta property="og:site_name" content="Shawn">
-<meta property="og:description" content="为什么学习Zookeeper?当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe. Zookeeper是什么呢？简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件。">
+<meta property="og:description" content="为什么学习Zookeeper?当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe. Zookeeper是什么呢？简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-08T13:12:07.077Z">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/zookeeper.jpg">
+<meta property="og:updated_time" content="2018-04-08T13:18:40.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zookeeper之入门篇">
-<meta name="twitter:description" content="为什么学习Zookeeper?当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe. Zookeeper是什么呢？简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件。">
+<meta name="twitter:description" content="为什么学习Zookeeper?当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe. Zookeeper是什么呢？简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/zookeeper.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Shawn" type="application/atom+xml">
   
@@ -179,10 +181,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="为什么学习Zookeeper"><a href="#为什么学习Zookeeper" class="headerlink" title="为什么学习Zookeeper?"></a><strong><em>为什么学习Zookeeper?</em></strong></h1><p>当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe.</p>
+        <p><img src="/assets/blogImg/zookeeper.jpg" alt="" width="450"></p>
+
+<h1 id="为什么学习Zookeeper"><a href="#为什么学习Zookeeper" class="headerlink" title="为什么学习Zookeeper?"></a><strong><em>为什么学习Zookeeper?</em></strong></h1><p>当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe.</p>
 <h1 id="Zookeeper是什么呢？"><a href="#Zookeeper是什么呢？" class="headerlink" title="Zookeeper是什么呢？"></a><strong><em>Zookeeper是什么呢？</em></strong></h1><p>简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件。</p>
 <p><font color="red">从设计模式的角度来讲：</font><br>是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper就负责通知已在Zookeeper上注册那些观察者做出相应的反应，从而实现集群中类似于Master/Slave管理模式</p>
-<p>&lt;!– more &gt;</p>
+<a id="more"></a>
 <h1 id="能干嘛？"><a href="#能干嘛？" class="headerlink" title="能干嘛？"></a><strong><em>能干嘛？</em></strong></h1><p>1.命名服务</p>
 <p>2.配置维护</p>
 <p>3.集群管理</p>
@@ -468,7 +472,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -476,11 +484,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>

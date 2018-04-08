@@ -338,51 +338,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="为什么学习Zookeeper"><a href="#为什么学习Zookeeper" class="headerlink" title="为什么学习Zookeeper?"></a><strong><em>为什么学习Zookeeper?</em></strong></h1><p>当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe.</p>
+        <p><img src="/assets/blogImg/zookeeper.jpg" alt="" width="450"></p>
+
+<h1 id="为什么学习Zookeeper"><a href="#为什么学习Zookeeper" class="headerlink" title="为什么学习Zookeeper?"></a><strong><em>为什么学习Zookeeper?</em></strong></h1><p>当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe.</p>
 <h1 id="Zookeeper是什么呢？"><a href="#Zookeeper是什么呢？" class="headerlink" title="Zookeeper是什么呢？"></a><strong><em>Zookeeper是什么呢？</em></strong></h1><p>简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件。</p>
 <p><font color="red">从设计模式的角度来讲：</font><br>是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper就负责通知已在Zookeeper上注册那些观察者做出相应的反应，从而实现集群中类似于Master/Slave管理模式</p>
-<p>&lt;!– more &gt;</p>
-<h1 id="能干嘛？"><a href="#能干嘛？" class="headerlink" title="能干嘛？"></a><strong><em>能干嘛？</em></strong></h1><p>1.命名服务</p>
-<p>2.配置维护</p>
-<p>3.集群管理</p>
-<p>4.分布式消息的同步和协调机制</p>
-<p>5.负载均衡</p>
-<p>6.对Dubbo的支持</p>
-<h1 id="去哪儿下？"><a href="#去哪儿下？" class="headerlink" title="去哪儿下？"></a><strong><em>去哪儿下？</em></strong></h1><p><a href="https://zookeeper.apache.org/" target="_blank" rel="noopener">https://zookeeper.apache.org/</a></p>
-<h1 id="怎么使？"><a href="#怎么使？" class="headerlink" title="怎么使？"></a><strong><em>怎么使？</em></strong></h1><p>1.将下载好的文件上传到Linux系统的/opt文件夹内</p>
-<p>2.重新创建一个文件夹（mkdir myzookeeper）在/opt下，将下载号的文件解压到该文件夹内</p>
-<p>3.然后进入conf文件夹内，拷贝一份zoo_sample.cfg改为zoo.cfg.</p>
-<p>4.修改zoo_sample.cfg内dataDir路径为当前文件夹路径</p>
-<p>5.进入bin文件夹内输入 ./zkServer.sh start</p>
-<p>6.检测服务是否启动 echo ruok|nc ip 2181，如果提示Im ok 代表启动成功</p>
-<h3 id="zooKeeper中的常用基本命令"><a href="#zooKeeper中的常用基本命令" class="headerlink" title="zooKeeper中的常用基本命令"></a><strong><em>zooKeeper中的常用基本命令</em></strong></h3><p>启动服务 ./zkServer.sh start</p>
-<p>关闭服务 ./zkServer.sh stop</p>
-<p>连接客户端 ./zkClient.sh</p>
-<p>退出客户端 quit</p>
-<p>创建Znode节点 creat /节点名称 节点值</p>
-<p>创建持久的有序Znode节点 creat -s /节点名称 节点值</p>
-<p>创建临时的节点 creat -e /节点名称 节点值</p>
-<p>创建临时的有序的Znode节点creat -s /节点名称 节点值</p>
-<p>查看zNode节点 ls/</p>
-<p>查看zNode节点和stat结构 ls2 /</p>
-<p>查看节点值 get /TNode（节点名称）</p>
-<p>修改节点值 set /TNode（节点名称） 值</p>
-<p>删除当前节点，存在子节点不能删除 delete </p>
-<p>删除节点包括子节点 rmr /节点名称</p>
-<h2 id="关于节点内stat结构"><a href="#关于节点内stat结构" class="headerlink" title="关于节点内stat结构"></a><strong><em>关于节点内stat结构</em></strong></h2><p>Znode维护了一个stat结构，这个stat结构包含了数据变化的版本号，访问控制的列表变化，还有时间戳。版本号和时间戳一起，可以协调Zookeeper验证缓存和协调更新</p>
-<p>cZxid 引起这个znode创建的zxid,创建节点的事物ID </p>
-<p>ctime             -znode被创建的毫秒数</p>
-<p>mZxid            -znode最后更新的zxid</p>
-<p>mtime            -znode最后修改的毫秒数</p>
-<p>pZxid             -znode最后更新的子节点的zxid  </p>
-<p>cversion         -znode子节点变化号，znode子节点修改次数</p>
-<p>dataVersion    -znode数据变化号</p>
-<p>aclVersion      -znode访问控制列表的变化</p>
-<p>emphemeralOwner 是否是临时节点</p>
-<p>dataLength     -znode的数据长度</p>
-<p>numChildren   -zonde的子节点数量</p>
-<p>总而言之一个ZNode节点对应一个应用，节点存储的数据就是应用所需要的配置信息.stat结构记录着一个ZNode节点的变化。</p>
-
+        
+          <a class="article-more-a" href="/2016/07/13/Zookeeper之入门篇/#more">more >></a>
+        
       
 
       
@@ -610,7 +573,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -618,11 +585,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
