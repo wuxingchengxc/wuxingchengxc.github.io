@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Shawn</title>
+  <title>Zookeeper之入门篇 | Shawn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="*{ 	margin:0; 	padding: 0; } body{ 	overflow: hidden; } #textBox{ 	position: absolute; 	left: 0; 	top: 0; 	z-index: -999; } .showRoll #frame {     border-color: hsl(0,0%,70%);     position: abs">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shawn">
-<meta property="og:url" content="http://yoursite.com/assets/demo/pre_css3_demo/demo.html">
+  <meta name="description" content="为什么学习Zookeeper?当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe. Zookeeper是什么呢？简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件。">
+<meta name="keywords" content="分布式,Zookeeper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zookeeper之入门篇">
+<meta property="og:url" content="http://yoursite.com/2016/07/13/Zookeeper之入门篇/index.html">
 <meta property="og:site_name" content="Shawn">
-<meta property="og:description" content="*{ 	margin:0; 	padding: 0; } body{ 	overflow: hidden; } #textBox{ 	position: absolute; 	left: 0; 	top: 0; 	z-index: -999; } .showRoll #frame {     border-color: hsl(0,0%,70%);     position: abs">
+<meta property="og:description" content="为什么学习Zookeeper?当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe. Zookeeper是什么呢？简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
+<meta property="og:updated_time" content="2018-04-08T13:12:07.077Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shawn">
-<meta name="twitter:description" content="*{ 	margin:0; 	padding: 0; } body{ 	overflow: hidden; } #textBox{ 	position: absolute; 	left: 0; 	top: 0; 	z-index: -999; } .showRoll #frame {     border-color: hsl(0,0%,70%);     position: abs">
+<meta name="twitter:title" content="Zookeeper之入门篇">
+<meta name="twitter:description" content="为什么学习Zookeeper?当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe. Zookeeper是什么呢？简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件。">
   
     <link rel="alternative" href="/atom.xml" title="Shawn" type="application/atom+xml">
   
@@ -158,260 +159,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-Zookeeper之入门篇" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Zookeeper之入门篇
+    </h1>
+  
+
+        
+        <a href="/2016/07/13/Zookeeper之入门篇/" class="archive-article-date">
+  	<time datetime="2016-07-13T12:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-13</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
-<script type="text/javascript" src="../jquery.js"></script>
-<style type="text/css">
-*{
-	margin:0;
-	padding: 0;
-}
-body{
-	overflow: hidden;
-}
-#textBox{
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: -999;
-}
-.showRoll #frame {
-    border-color: hsl(0,0%,70%);
-    position: absolute;
-}
-#box{
-	width: 641px;
-	height: 483px;
-	background: url(bg.jpg);
-	border: 1px solid #ddd;
-	position: relative;
-	color: #fff;
-	overflow: hidden;
-}
-#frame {
-    width: 70px;
-    height: 92px;
-    left:370px;
-    top:240px;
-    position: absolute;
-    border: 1px solid transparent;
-    background: url(mhxy.png) no-repeat left top;
-    -webkit-animation: anm-down 1s steps(8) infinite;
-       -moz-animation: anm-down 1s steps(8) infinite;
-        -ms-animation: anm-down 1s steps(8) infinite;
-         -o-animation: anm-down 1s steps(8) infinite;
-            animation: anm-down 1s steps(8) infinite;
-}
-@-webkit-keyframes anm-down { 0% { background-position: 0px 0; } 100% { background-position: -560px 0; } }
-   @-moz-keyframes anm-down { 0% { background-position: 0px 0; } 100% { background-position: -560px 0; } }
-    @-ms-keyframes anm-down { 0% { background-position: 0px 0; } 100% { background-position: -560px 0; } }
-     @-o-keyframes anm-down { 0% { background-position: 0px 0; } 100% { background-position: -560px 0; } }
-        @keyframes anm-down { 0% { background-position: 0px 0; } 100% { background-position: -560px 0; } }
+        <h1 id="为什么学习Zookeeper"><a href="#为什么学习Zookeeper" class="headerlink" title="为什么学习Zookeeper?"></a><strong><em>为什么学习Zookeeper?</em></strong></h1><p>当下我们越来越多的场景都需要使用到分布式的开发，然而分布式开发治理框架就是DUBBO,在DUBOO的使用手册中，需要使用到Zookeepe.</p>
+<h1 id="Zookeeper是什么呢？"><a href="#Zookeeper是什么呢？" class="headerlink" title="Zookeeper是什么呢？"></a><strong><em>Zookeeper是什么呢？</em></strong></h1><p>简单来讲:Zookeeper是分布式的，高性能的，开源的分布式系统协调的服务，是Google的Chubby一个开源实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件。</p>
+<p><font color="red">从设计模式的角度来讲：</font><br>是一个基于观察者模式设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper就负责通知已在Zookeeper上注册那些观察者做出相应的反应，从而实现集群中类似于Master/Slave管理模式</p>
+<p>&lt;!– more &gt;</p>
+<h1 id="能干嘛？"><a href="#能干嘛？" class="headerlink" title="能干嘛？"></a><strong><em>能干嘛？</em></strong></h1><p>1.命名服务</p>
+<p>2.配置维护</p>
+<p>3.集群管理</p>
+<p>4.分布式消息的同步和协调机制</p>
+<p>5.负载均衡</p>
+<p>6.对Dubbo的支持</p>
+<h1 id="去哪儿下？"><a href="#去哪儿下？" class="headerlink" title="去哪儿下？"></a><strong><em>去哪儿下？</em></strong></h1><p><a href="https://zookeeper.apache.org/" target="_blank" rel="noopener">https://zookeeper.apache.org/</a></p>
+<h1 id="怎么使？"><a href="#怎么使？" class="headerlink" title="怎么使？"></a><strong><em>怎么使？</em></strong></h1><p>1.将下载好的文件上传到Linux系统的/opt文件夹内</p>
+<p>2.重新创建一个文件夹（mkdir myzookeeper）在/opt下，将下载号的文件解压到该文件夹内</p>
+<p>3.然后进入conf文件夹内，拷贝一份zoo_sample.cfg改为zoo.cfg.</p>
+<p>4.修改zoo_sample.cfg内dataDir路径为当前文件夹路径</p>
+<p>5.进入bin文件夹内输入 ./zkServer.sh start</p>
+<p>6.检测服务是否启动 echo ruok|nc ip 2181，如果提示Im ok 代表启动成功</p>
+<h3 id="zooKeeper中的常用基本命令"><a href="#zooKeeper中的常用基本命令" class="headerlink" title="zooKeeper中的常用基本命令"></a><strong><em>zooKeeper中的常用基本命令</em></strong></h3><p>启动服务 ./zkServer.sh start</p>
+<p>关闭服务 ./zkServer.sh stop</p>
+<p>连接客户端 ./zkClient.sh</p>
+<p>退出客户端 quit</p>
+<p>创建Znode节点 creat /节点名称 节点值</p>
+<p>创建持久的有序Znode节点 creat -s /节点名称 节点值</p>
+<p>创建临时的节点 creat -e /节点名称 节点值</p>
+<p>创建临时的有序的Znode节点creat -s /节点名称 节点值</p>
+<p>查看zNode节点 ls/</p>
+<p>查看zNode节点和stat结构 ls2 /</p>
+<p>查看节点值 get /TNode（节点名称）</p>
+<p>修改节点值 set /TNode（节点名称） 值</p>
+<p>删除当前节点，存在子节点不能删除 delete </p>
+<p>删除节点包括子节点 rmr /节点名称</p>
+<h2 id="关于节点内stat结构"><a href="#关于节点内stat结构" class="headerlink" title="关于节点内stat结构"></a><strong><em>关于节点内stat结构</em></strong></h2><p>Znode维护了一个stat结构，这个stat结构包含了数据变化的版本号，访问控制的列表变化，还有时间戳。版本号和时间戳一起，可以协调Zookeeper验证缓存和协调更新</p>
+<p>cZxid 引起这个znode创建的zxid,创建节点的事物ID </p>
+<p>ctime             -znode被创建的毫秒数</p>
+<p>mZxid            -znode最后更新的zxid</p>
+<p>mtime            -znode最后修改的毫秒数</p>
+<p>pZxid             -znode最后更新的子节点的zxid  </p>
+<p>cversion         -znode子节点变化号，znode子节点修改次数</p>
+<p>dataVersion    -znode数据变化号</p>
+<p>aclVersion      -znode访问控制列表的变化</p>
+<p>emphemeralOwner 是否是临时节点</p>
+<p>dataLength     -znode的数据长度</p>
+<p>numChildren   -zonde的子节点数量</p>
+<p>总而言之一个ZNode节点对应一个应用，节点存储的数据就是应用所需要的配置信息.stat结构记录着一个ZNode节点的变化。</p>
 
-@-webkit-keyframes anm-left { 0% { background-position: 0px -92px; } 100% { background-position: -560px -92px; } }
-   @-moz-keyframes anm-left { 0% { background-position: 0px -92px; } 100% { background-position: -560px -92px; } }
-    @-ms-keyframes anm-left { 0% { background-position: 0px -92px; } 100% { background-position: -560px -92px; } }
-     @-o-keyframes anm-left { 0% { background-position: 0px -92px; } 100% { background-position: -560px -92px; } }
-        @keyframes anm-left { 0% { background-position: 0px -92px; } 100% { background-position: -560px -92px; } }
-
-@-webkit-keyframes anm-right { 0% { background-position: 0px -184px; } 100% { background-position: -560px -184px; } }
-   @-moz-keyframes anm-right { 0% { background-position: 0px -184px; } 100% { background-position: -560px -184px; } }
-    @-ms-keyframes anm-right { 0% { background-position: 0px -184px; } 100% { background-position: -560px -184px; } }
-     @-o-keyframes anm-right { 0% { background-position: 0px -184px; } 100% { background-position: -560px -184px; } }
-        @keyframes anm-right { 0% { background-position: 0px -184px; } 100% { background-position: -560px -184px; } }
-
-@-webkit-keyframes anm-up { 0% { background-position: 0px -276px; } 100% { background-position: -560px -276px; } }
-   @-moz-keyframes anm-up { 0% { background-position: 0px -276px; } 100% { background-position: -560px -276px; } }
-    @-ms-keyframes anm-up { 0% { background-position: 0px -276px; } 100% { background-position: -560px -276px; } }
-     @-o-keyframes anm-up { 0% { background-position: 0px -276px; } 100% { background-position: -560px -276px; } }
-        @keyframes anm-up { 0% { background-position: 0px -276px; } 100% { background-position: -560px -276px; } }
-
-@-webkit-keyframes anm-ld { 0% { background-position: 0px -368px; } 100% { background-position: -560px -368px; } }
-   @-moz-keyframes anm-ld { 0% { background-position: 0px -368px; } 100% { background-position: -560px -368px; } }
-    @-ms-keyframes anm-ld { 0% { background-position: 0px -368px; } 100% { background-position: -560px -368px; } }
-     @-o-keyframes anm-ld { 0% { background-position: 0px -368px; } 100% { background-position: -560px -368px; } }
-        @keyframes anm-ld { 0% { background-position: 0px -368px; } 100% { background-position: -560px -368px; } }
-
-@-webkit-keyframes anm-rd { 0% { background-position: 0px -460px; } 100% { background-position: -560px -460px; } }
-   @-moz-keyframes anm-rd { 0% { background-position: 0px -460px; } 100% { background-position: -560px -460px; } }
-    @-ms-keyframes anm-rd { 0% { background-position: 0px -460px; } 100% { background-position: -560px -460px; } }
-     @-o-keyframes anm-rd { 0% { background-position: 0px -460px; } 100% { background-position: -560px -460px; } }
-        @keyframes anm-rd { 0% { background-position: 0px -460px; } 100% { background-position: -560px -460px; } }
-
-@-webkit-keyframes anm-lu { 0% { background-position: 0px -552px; } 100% { background-position: -560px -552px; } }
-   @-moz-keyframes anm-lu { 0% { background-position: 0px -552px; } 100% { background-position: -560px -552px; } }
-    @-ms-keyframes anm-lu { 0% { background-position: 0px -552px; } 100% { background-position: -560px -552px; } }
-     @-o-keyframes anm-lu { 0% { background-position: 0px -552px; } 100% { background-position: -560px -552px; } }
-        @keyframes anm-lu { 0% { background-position: 0px -552px; } 100% { background-position: -560px -552px; } }
-
-@-webkit-keyframes anm-ru { 0% { background-position: 0px -644px; } 100% { background-position: -560px -644px; } }
-   @-moz-keyframes anm-ru { 0% { background-position: 0px -644px; } 100% { background-position: -560px -644px; } }
-    @-ms-keyframes anm-ru { 0% { background-position: 0px -644px; } 100% { background-position: -560px -644px; } }
-     @-o-keyframes anm-ru { 0% { background-position: 0px -644px; } 100% { background-position: -560px -644px; } }
-        @keyframes anm-ru { 0% { background-position: 0px -644px; } 100% { background-position: -560px -644px; } }
-
-</style>
-<title>test</title>
-</head>
-<body>
-	<div id="box">
-		<div id="frame"></div>
-		<input id="textBox" type="text">
-	</div>
-    
-    <script type="text/javascript">
-    	function setAnm (str){
-    		switch (str){
-    			case 'left':{
-    				$("#frame").css({"animation":"anm-left 1s steps(8) infinite"});
-    				break;
-    			}
-    			case 'right':{
-    				$("#frame").css({"animation":"anm-right 1s steps(8) infinite"});
-    				break;
-    			}
-    			case 'up':{
-    				$("#frame").css({"animation":"anm-up 1s steps(8) infinite"});
-    				break;
-    			}
-    			case 'down':{
-    				$("#frame").css({"animation":"anm-down 1s steps(8) infinite"});
-    				break;
-    			}
-    			case 'lu':{
-    				$("#frame").css({"animation":"anm-lu 1s steps(8) infinite"});
-    				break;
-    			}
-    			case 'ld':{
-    				$("#frame").css({"animation":"anm-ld 1s steps(8) infinite"});
-    				break;
-    			}
-    			case 'ru':{
-    				$("#frame").css({"animation":"anm-ru 1s steps(8) infinite"});
-    				break;
-    			}
-    			case 'rd':{
-    				$("#frame").css({"animation":"anm-rd 1s steps(8) infinite"});
-    				break;
-    			}
-    		}
-    	}
-    	var data = {
-    		x:0,
-    		y:0,
-    		l:false,
-    		r:false,
-    		u:false,
-    		d:false,
-    		time:null
-    	}
-    	function move(){
-    		trans = "translate("+data.x*50+"px,"+data.y*50+"px)";
-		  	$('#frame').css({"transform":trans,"transition":"all 0.3s linear"});
-    	}
-    	function diff(){
-    		var newTime = +new Date;
-			if(!data.time){
-				data.time = newTime;
-			}
-			var diff = newTime-data.time;
-			return diff;
-    	}
-		$(window).keydown(function(event){
-		  	var keycode = event.which;
-		  	if(keycode==37){
-		  		if(data.l) return;
-		  		var isRun = diff();
-		  		console.log(isRun);
-		  		data.l=true;
-		  		if(data.u){
-		  			setAnm("lu");
-		  			data.x--;
-		  			if(isRun>480)
-		  			data.y--;
-		  		}else if(data.d){
-		  			setAnm("ld");
-		  			data.x--;
-		  			if(isRun>480)
-		  			data.y++;
-		  		}else{
-		  			setAnm("left");
-			  		data.x--;
-		  		}
-		  	}else if(keycode==38){
-		  		if(data.u) return;
-		  		var isRun = diff();
-		  		console.log(isRun);
-		  		data.u=true;
-		  		if(data.l){
-		  			setAnm("lu");
-		  			if(isRun>480)
-		  			data.x--;
-		  			data.y--;
-		  		}else if(data.r){
-		  			setAnm("ru");
-		  			if(isRun>480)
-		  			data.x++;
-		  			data.y--;
-		  		}else{
-		  			setAnm("up");
-			  		data.y--;
-		  		}
-		  	}else if(keycode==39){
-		  		if(data.r) return;
-		  		var isRun = diff();
-		  		console.log(isRun);
-		  		data.r=true;
-		  		if(data.u){
-		  			setAnm("ru");
-		  			data.x++;
-		  			if(isRun>480)
-		  			data.y--;
-		  		}else if(data.d){
-		  			setAnm("rd");
-		  			data.x++;
-		  			if(isRun>480)
-		  			data.y++;
-		  		}else{
-		  			setAnm("right");
-			  		data.x++;
-		  		}
-		  	}else if(keycode==40){
-		  		if(data.d) return;
-		  		var isRun = diff();
-		  		console.log(isRun);
-		  		data.d=true;
-		  		if(data.l){
-		  			setAnm("ld");
-		  			if(isRun>480)
-		  			data.x--;
-		  			data.y++;
-		  		}else if(data.r){
-		  			setAnm("rd");
-		  			if(isRun>480)
-		  			data.x++;
-		  			data.y++;
-		  		}else{
-		  			setAnm("down");
-			  		data.y++;
-		  		}
-		  	}
-		  	move();
-		}).keyup(function(){
-			data.l = data.r = data.u = data.d = false;
-			data.time = null;
-		});
-    </script>
-</body>
-</html>
       
 
       
@@ -440,6 +252,21 @@ body{
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Zookeeper</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -490,7 +317,7 @@ body{
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/assets/demo/pre_css3_demo/demo.html" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2016/07/13/Zookeeper之入门篇/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -502,6 +329,25 @@ body{
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2017/01/26/diary-2017-0118-0125/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          回乡偶书 1.18 - 1.25
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/16/Git快速入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git的基本语法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -552,7 +398,7 @@ body{
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
