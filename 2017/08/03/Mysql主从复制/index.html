@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/1 | Shawn</title>
+  <title>Mysql主从复制 | Shawn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="��Ϸ������">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shawn">
-<meta property="og:url" content="http://yoursite.com/archives/2017/01/index.html">
+  <meta name="description" content="前言因为公司的业务不断的扩展，给我安排了一个mysql的集群任务，集群之前必须要做数据同步于是就有痛苦的学习历程~以下就是我的经验分享 主从复制原理  一句话概括:,slave从机会从master主机读取binlog（二进制文件）来进行数据同步. 实际mysql内层分三步: 1.master将改变记录到二进制文件(binary log).这些记录过程叫做二进制日志时间,binary log eve">
+<meta name="keywords" content="mysql,分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql主从复制">
+<meta property="og:url" content="http://yoursite.com/2017/08/03/Mysql主从复制/index.html">
 <meta property="og:site_name" content="Shawn">
-<meta property="og:description" content="��Ϸ������">
+<meta property="og:description" content="前言因为公司的业务不断的扩展，给我安排了一个mysql的集群任务，集群之前必须要做数据同步于是就有痛苦的学习历程~以下就是我的经验分享 主从复制原理  一句话概括:,slave从机会从master主机读取binlog（二进制文件）来进行数据同步. 实际mysql内层分三步: 1.master将改变记录到二进制文件(binary log).这些记录过程叫做二进制日志时间,binary log eve">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/mysql.jpg">
+<meta property="og:updated_time" content="2018-04-09T15:53:36.416Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shawn">
-<meta name="twitter:description" content="��Ϸ������">
+<meta name="twitter:title" content="Mysql主从复制">
+<meta name="twitter:description" content="前言因为公司的业务不断的扩展，给我安排了一个mysql的集群任务，集群之前必须要做数据同步于是就有痛苦的学习历程~以下就是我的经验分享 主从复制原理  一句话概括:,slave从机会从master主机读取binlog（二进制文件）来进行数据同步. 实际mysql内层分三步: 1.master将改变记录到二进制文件(binary log).这些记录过程叫做二进制日志时间,binary log eve">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/mysql.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Shawn" type="application/atom+xml">
   
@@ -157,60 +161,205 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Mysql主从复制" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/26/diary-2017-0118-0125/" class="archive-article-date">
-  	<time datetime="2017-01-26T02:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/26/diary-2017-0118-0125/">回乡偶书 1.18 - 1.25</a>
+    <h1 class="article-title" itemprop="name">
+      Mysql主从复制
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/08/03/Mysql主从复制/" class="archive-article-date">
+  	<time datetime="2017-08-03T11:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为公司的业务不断的扩展，给我安排了一个mysql的集群任务，集群之前必须要做数据同步于是就有痛苦的学习历程~以下就是我的经验分享</p>
+<h3 id="主从复制原理"><a href="#主从复制原理" class="headerlink" title="主从复制原理"></a>主从复制原理</h3><p><img src="/assets/blogImg/mysql.jpg" alt="" width="450"></p>
+
+<p>一句话概括:,slave从机会从master主机读取binlog（二进制文件）来进行数据同步.</p>
+<p>实际mysql内层分三步:</p>
+<p>1.master将改变记录到二进制文件(binary log).这些记录过程叫做二进制日志时间,binary log events;</p>
+<p>2.slave将master的binary log events拷贝到它的中继日志（relay log）;</p>
+<p>3.slave重做中继日志中的时间，将改变应用到自己的数据库中.MySql复制使异步且串行化的.</p>
+<a id="more"></a>
+<h2 id="主从复制配置"><a href="#主从复制配置" class="headerlink" title="主从复制配置"></a>主从复制配置</h2><p>==一==.修改主机中的my.cnf文件</p>
+<p>[mysqld]<br>server-id =1 (必改)</p>
+<p>log-bin=文件路径/mysqlbin (必改) 二进制日志</p>
+<p>log-err=文件路径/mysqlerr (可选)   错误日志</p>
+<p>basedir =文件路径  (可选 )  根目录路径</p>
+<p>tmpdir = 文件路径 (可选)   临时目录路径</p>
+<p>datadir =文件路径/Data(可选) 数据目录</p>
+<p>read-only=0 主机读写都可以(可选)</p>
+<p>binlog-ignore-db=mysql(可选)<br>不需要复制的数据库</p>
+<p>配置完之后请关闭防火墙并重启mysql</p>
+<p>==二==.修改从集中my.cnf的文件<br>[mysqld]</p>
+<p>log-bin=mysql-bin (必选)</p>
+<p>server-id =2(必改)</p>
+<p>配置完之后请关闭防火墙并重启mysql</p>
+<p>==三==.主机授权</p>
+<p>GRANT REPLICATION SLAVE ON <em>.</em> TO ‘zhangsan‘@’从机器数据库IP’ IDENTIFIED BY ‘123456’;</p>
+<p>flush privileges;刷新主机</p>
+<p>show master status;  查询master的状态获取File 下内容和 Position 下内容(相当于x,y 的文件位置) eg:File mysqlbin.000035  Position 341</p>
+<p>==四==.从机开始复制</p>
+<p>HANGE MASTER TO MASTER_HOST=’主机ip’,<br>MASTER_USER=’zhangsan’,<br>MASTER_PASSWORD=’123456’,<br>MASTER_LOG_FILE=’mysqlbin.000035’,MASTER_LOG_POS=341; </p>
+<p>start slave; 开始复制</p>
+<p>show slave status\G  查看slave状态<br>Slave_IO_Running:Yes<br>Slave_SQL_Running:Yes<br>两个同时存在说明开始复制</p>
+<blockquote>
+<p>如果出现问题<br>1.请保证数据库版本一致<br>2.双方防火墙关闭<br>3.网路畅通<br>4._pos没有问题<br>5.连接密码没有输入错误。<br>检查完毕之后请先停止stop slave;然后从主机中重新获取_pos状态，再开始复制</p>
+</blockquote>
+<p>stop slave; 停止从机复制功能</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">旧事</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/08/03/Mysql主从复制/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/08/01/liunx系统下安装mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">liunx系统下安装mysql</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -234,8 +383,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

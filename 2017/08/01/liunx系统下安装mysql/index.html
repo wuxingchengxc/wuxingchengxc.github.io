@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/1 | Shawn</title>
+  <title>liunx系统下安装mysql | Shawn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="��Ϸ������">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shawn">
-<meta property="og:url" content="http://yoursite.com/archives/2017/01/index.html">
+  <meta name="description" content="前言为了测试最近学习的mysql主从复制技术，不得不重新温习下安装，所以我把liunx下安装命令分享出来. 安装1.上传mysql文件到/opt目录下并且解压   tar -xvf MySQL-5.5.54-1.linux2.6.x86_64.rpm-bundle.tar  2.检查是否安装MySQL  rpm -qa|grep mysql  3.如果有版本先卸载一下  rpm -e –nodep">
+<meta name="keywords" content="linux,mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="liunx系统下安装mysql">
+<meta property="og:url" content="http://yoursite.com/2017/08/01/liunx系统下安装mysql/index.html">
 <meta property="og:site_name" content="Shawn">
-<meta property="og:description" content="��Ϸ������">
+<meta property="og:description" content="前言为了测试最近学习的mysql主从复制技术，不得不重新温习下安装，所以我把liunx下安装命令分享出来. 安装1.上传mysql文件到/opt目录下并且解压   tar -xvf MySQL-5.5.54-1.linux2.6.x86_64.rpm-bundle.tar  2.检查是否安装MySQL  rpm -qa|grep mysql  3.如果有版本先卸载一下  rpm -e –nodep">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-09T15:55:38.025Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shawn">
-<meta name="twitter:description" content="��Ϸ������">
+<meta name="twitter:title" content="liunx系统下安装mysql">
+<meta name="twitter:description" content="前言为了测试最近学习的mysql主从复制技术，不得不重新温习下安装，所以我把liunx下安装命令分享出来. 安装1.上传mysql文件到/opt目录下并且解压   tar -xvf MySQL-5.5.54-1.linux2.6.x86_64.rpm-bundle.tar  2.检查是否安装MySQL  rpm -qa|grep mysql  3.如果有版本先卸载一下  rpm -e –nodep">
   
     <link rel="alternative" href="/atom.xml" title="Shawn" type="application/atom+xml">
   
@@ -157,60 +159,243 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-liunx系统下安装mysql" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/26/diary-2017-0118-0125/" class="archive-article-date">
-  	<time datetime="2017-01-26T02:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/26/diary-2017-0118-0125/">回乡偶书 1.18 - 1.25</a>
+    <h1 class="article-title" itemprop="name">
+      liunx系统下安装mysql
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/08/01/liunx系统下安装mysql/" class="archive-article-date">
+  	<time datetime="2017-08-01T14:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>为了测试最近学习的mysql主从复制技术，不得不重新温习下安装，所以我把liunx下安装命令分享出来.</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1.上传mysql文件到/opt目录下并且解压 </p>
+<blockquote>
+<p>tar -xvf MySQL-5.5.54-1.linux2.6.x86_64.rpm-bundle.tar</p>
+</blockquote>
+<p>2.检查是否安装MySQL</p>
+<blockquote>
+<p>rpm -qa|grep mysql</p>
+</blockquote>
+<p>3.如果有版本先卸载一下</p>
+<blockquote>
+<p>rpm -e –nodeps mysql-libs</p>
+</blockquote>
+<p>4.安装客户端</p>
+<blockquote>
+<p>rpm -ivh MySQL-client-5.5.54-1.linux2.6.x86_64.rpm </p>
+</blockquote>
+<p>5.安装服务端</p>
+<blockquote>
+<p>rpm -ivh MySQL-server-5.5.54-1.linux2.6.x86_<br>64.rpm </p>
+</blockquote>
+<p>6.查看服务端状态</p>
+<blockquote>
+<p>service mysql status</p>
+</blockquote>
+<p>7.启动mysql服务 </p>
+<blockquote>
+<p>service mysql start</p>
+</blockquote>
+<p>8.停止Mysql服务</p>
+<blockquote>
+<p>service mysql stop<br>或者kill -9</p>
+</blockquote>
+<p>9.首次登陆设置用户名密码</p>
+<blockquote>
+<p>mysqladmin -u root password ‘1234’</p>
+</blockquote>
+<p>10.登陆</p>
+<blockquote>
+<p>mysql -u root -p</p>
+</blockquote>
+<p>11.拷贝配置文件</p>
+<blockquote>
+<p>cp my-huge.cnf /etc/my.cnf</p>
+</blockquote>
+<p>12.开机自启动</p>
+<blockquote>
+<p>chkconfig –list<br>第五项启动，则开机自启动</p>
+</blockquote>
+<p>13.数据库字符集乱码问题</p>
+<p>13.1 查看字符集</p>
+<blockquote>
+<p>show variables like ‘%char%’;</p>
+</blockquote>
+<p>13.2.改配置文件</p>
+<blockquote>
+<p>vim etc/my.cnf<br>在[client]下添加<br>default-character-set=utf8</p>
+</blockquote>
+<blockquote>
+<p>在[mysqld]<br>character_set_server=utf8<br>character_set_client=utf8<br>collation-server=utf8_general_ci</p>
+</blockquote>
+<blockquote>
+<p>在[mysql]中添加<br>default-character-set=utf8</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">旧事</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/08/01/liunx系统下安装mysql/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/08/03/Mysql主从复制/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Mysql主从复制
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/06/16/Liunx入门篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Liunx入门篇</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -234,8 +419,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

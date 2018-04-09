@@ -159,6 +159,314 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Mysql主从复制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/03/Mysql主从复制/">Mysql主从复制</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/03/Mysql主从复制/" class="archive-article-date">
+  	<time datetime="2017-08-03T11:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为公司的业务不断的扩展，给我安排了一个mysql的集群任务，集群之前必须要做数据同步于是就有痛苦的学习历程~以下就是我的经验分享</p>
+<h3 id="主从复制原理"><a href="#主从复制原理" class="headerlink" title="主从复制原理"></a>主从复制原理</h3><p><img src="/assets/blogImg/mysql.jpg" alt="" width="450"></p>
+
+<p>一句话概括:,slave从机会从master主机读取binlog（二进制文件）来进行数据同步.</p>
+<p>实际mysql内层分三步:</p>
+<p>1.master将改变记录到二进制文件(binary log).这些记录过程叫做二进制日志时间,binary log events;</p>
+<p>2.slave将master的binary log events拷贝到它的中继日志（relay log）;</p>
+<p>3.slave重做中继日志中的时间，将改变应用到自己的数据库中.MySql复制使异步且串行化的.</p>
+        
+          <a class="article-more-a" href="/2017/08/03/Mysql主从复制/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/03/Mysql主从复制/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-liunx系统下安装mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/01/liunx系统下安装mysql/">liunx系统下安装mysql</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/01/liunx系统下安装mysql/" class="archive-article-date">
+  	<time datetime="2017-08-01T14:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>为了测试最近学习的mysql主从复制技术，不得不重新温习下安装，所以我把liunx下安装命令分享出来.</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1.上传mysql文件到/opt目录下并且解压 </p>
+<blockquote>
+<p>tar -xvf MySQL-5.5.54-1.linux2.6.x86_64.rpm-bundle.tar</p>
+</blockquote>
+<p>2.检查是否安装MySQL</p>
+<blockquote>
+<p>rpm -qa|grep mysql</p>
+</blockquote>
+<p>3.如果有版本先卸载一下</p>
+<blockquote>
+<p>rpm -e –nodeps mysql-libs</p>
+</blockquote>
+<p>4.安装客户端</p>
+<blockquote>
+<p>rpm -ivh MySQL-client-5.5.54-1.linux2.6.x86_64.rpm </p>
+</blockquote>
+<p>5.安装服务端</p>
+<blockquote>
+<p>rpm -ivh MySQL-server-5.5.54-1.linux2.6.x86_<br>64.rpm </p>
+</blockquote>
+<p>6.查看服务端状态</p>
+<blockquote>
+<p>service mysql status</p>
+</blockquote>
+<p>7.启动mysql服务 </p>
+<blockquote>
+<p>service mysql start</p>
+</blockquote>
+<p>8.停止Mysql服务</p>
+<blockquote>
+<p>service mysql stop<br>或者kill -9</p>
+</blockquote>
+<p>9.首次登陆设置用户名密码</p>
+<blockquote>
+<p>mysqladmin -u root password ‘1234’</p>
+</blockquote>
+<p>10.登陆</p>
+<blockquote>
+<p>mysql -u root -p</p>
+</blockquote>
+<p>11.拷贝配置文件</p>
+<blockquote>
+<p>cp my-huge.cnf /etc/my.cnf</p>
+</blockquote>
+<p>12.开机自启动</p>
+<blockquote>
+<p>chkconfig –list<br>第五项启动，则开机自启动</p>
+</blockquote>
+<p>13.数据库字符集乱码问题</p>
+<p>13.1 查看字符集</p>
+<blockquote>
+<p>show variables like ‘%char%’;</p>
+</blockquote>
+<p>13.2.改配置文件</p>
+<blockquote>
+<p>vim etc/my.cnf<br>在[client]下添加<br>default-character-set=utf8</p>
+</blockquote>
+<blockquote>
+<p>在[mysqld]<br>character_set_server=utf8<br>character_set_client=utf8<br>collation-server=utf8_general_ci</p>
+</blockquote>
+<blockquote>
+<p>在[mysql]中添加<br>default-character-set=utf8</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/01/liunx系统下安装mysql/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Liunx入门篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/16/Liunx入门篇/">Liunx入门篇</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/16/Liunx入门篇/" class="archive-article-date">
+  	<time datetime="2017-06-16T14:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Liunx"><a href="#Liunx" class="headerlink" title="Liunx"></a>Liunx</h1><p>现在很多企业部署项目都在liunx系统上，因为liunx的处理速度特别快。所以学习liunx是必须的。下面就简单介绍下lunx的目录结构吧！</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>/bin  Binary的缩写，这个目录存放着最经常使用的命令</p>
+<p>/sbin s就是Supper User的意思，这里存放着使系统管理员经常使用的系统管理程序。</p>
+<p>/home 存放着普通用户的主目录，在linux中每个用户都有一个自己的目录，一般该目录名是以用户账号命名的。</p>
+<p>/root 该目录为系统管理员，也称作超级权限者用户的主目录</p>
+        
+          <a class="article-more-a" href="/2017/06/16/Liunx入门篇/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/16/Liunx入门篇/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-diary-2017-0212-0218" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -493,7 +801,8 @@
     		&copy; 2018 Shawn
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		<!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by -->
+		no end for learning !
       	</div>
     </div>
   </div>
@@ -573,15 +882,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旧事</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Zookeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旧事</a>
               </li>
              
               <li class="article-tag-list-item">
