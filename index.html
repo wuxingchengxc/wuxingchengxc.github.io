@@ -183,10 +183,6 @@
 <h3 id="主从复制原理"><a href="#主从复制原理" class="headerlink" title="主从复制原理"></a>主从复制原理</h3><p><img src="/assets/blogImg/mysql.jpg" alt="" width="450"></p>
 
 <p>一句话概括:,slave从机会从master主机读取binlog（二进制文件）来进行数据同步.</p>
-<p>实际mysql内层分三步:</p>
-<p>1.master将改变记录到二进制文件(binary log).这些记录过程叫做二进制日志时间,binary log events;</p>
-<p>2.slave将master的binary log events拷贝到它的中继日志（relay log）;</p>
-<p>3.slave重做中继日志中的时间，将改变应用到自己的数据库中.MySql复制使异步且串行化的.</p>
         
           <a class="article-more-a" href="/2017/08/03/Mysql主从复制/#more">more >></a>
         
