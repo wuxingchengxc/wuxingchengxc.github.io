@@ -202,11 +202,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -267,70 +267,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>为了测试最近学习的mysql主从复制技术，不得不重新温习下安装，所以我把liunx下安装命令分享出来.</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1.上传mysql文件到/opt目录下并且解压 </p>
-<blockquote>
-<p>tar -xvf MySQL-5.5.54-1.linux2.6.x86_64.rpm-bundle.tar</p>
-</blockquote>
-<p>2.检查是否安装MySQL</p>
-<blockquote>
-<p>rpm -qa|grep mysql</p>
-</blockquote>
-<p>3.如果有版本先卸载一下</p>
-<blockquote>
-<p>rpm -e –nodeps mysql-libs</p>
-</blockquote>
-<p>4.安装客户端</p>
-<blockquote>
-<p>rpm -ivh MySQL-client-5.5.54-1.linux2.6.x86_64.rpm </p>
-</blockquote>
-<p>5.安装服务端</p>
-<blockquote>
-<p>rpm -ivh MySQL-server-5.5.54-1.linux2.6.x86_<br>64.rpm </p>
-</blockquote>
-<p>6.查看服务端状态</p>
-<blockquote>
-<p>service mysql status</p>
-</blockquote>
-<p>7.启动mysql服务 </p>
-<blockquote>
-<p>service mysql start</p>
-</blockquote>
-<p>8.停止Mysql服务</p>
-<blockquote>
-<p>service mysql stop<br>或者kill -9</p>
-</blockquote>
-<p>9.首次登陆设置用户名密码</p>
-<blockquote>
-<p>mysqladmin -u root password ‘1234’</p>
-</blockquote>
-<p>10.登陆</p>
-<blockquote>
-<p>mysql -u root -p</p>
-</blockquote>
-<p>11.拷贝配置文件</p>
-<blockquote>
-<p>cp my-huge.cnf /etc/my.cnf</p>
-</blockquote>
-<p>12.开机自启动</p>
-<blockquote>
-<p>chkconfig –list<br>第五项启动，则开机自启动</p>
-</blockquote>
-<p>13.数据库字符集乱码问题</p>
-<p>13.1 查看字符集</p>
-<blockquote>
-<p>show variables like ‘%char%’;</p>
-</blockquote>
-<p>13.2.改配置文件</p>
-<blockquote>
-<p>vim etc/my.cnf<br>在[client]下添加<br>default-character-set=utf8</p>
-</blockquote>
-<blockquote>
-<p>在[mysqld]<br>character_set_server=utf8<br>character_set_client=utf8<br>collation-server=utf8_general_ci</p>
-</blockquote>
-<blockquote>
-<p>在[mysql]中添加<br>default-character-set=utf8</p>
-</blockquote>
-
+        
+          <a class="article-more-a" href="/2017/08/01/liunx系统下安装mysql/#more">more >></a>
+        
       
 
       
@@ -882,7 +821,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旧事</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -890,11 +829,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -902,7 +841,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">旧事</a>
               </li>
             
             <div class="clearfix"></div>
