@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Shawn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="layout: post title: “Zookeeper之进阶篇” date: 2016-07-20 15:31 comments: true tags: - 分布式 - Zookeeper 前言在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper. HelloD-Zookeperr1.创建一个Maven工程配置Pom.x">
+  <meta name="description" content="layout: posttitle: “Zookeeper之进阶篇”date: 2016-07-20 15:31comments: truetags: - 分布式 - Zookeeper 前言在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper. HelloD-Zookeperr1.创建一个Maven工程配置Pom.xml文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shawn">
 <meta property="og:url" content="http://yoursite.com/2018/04/10/Zookepeer之进阶篇/index.html">
 <meta property="og:site_name" content="Shawn">
-<meta property="og:description" content="layout: post title: “Zookeeper之进阶篇” date: 2016-07-20 15:31 comments: true tags: - 分布式 - Zookeeper 前言在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper. HelloD-Zookeperr1.创建一个Maven工程配置Pom.x">
+<meta property="og:description" content="layout: posttitle: “Zookeeper之进阶篇”date: 2016-07-20 15:31comments: truetags: - 分布式 - Zookeeper 前言在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper. HelloD-Zookeperr1.创建一个Maven工程配置Pom.xml文件">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/zookeeper_watch.png">
-<meta property="og:updated_time" content="2018-04-10T12:38:21.106Z">
+<meta property="og:updated_time" content="2018-04-10T12:44:54.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shawn">
-<meta name="twitter:description" content="layout: post title: “Zookeeper之进阶篇” date: 2016-07-20 15:31 comments: true tags: - 分布式 - Zookeeper 前言在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper. HelloD-Zookeperr1.创建一个Maven工程配置Pom.x">
+<meta name="twitter:description" content="layout: posttitle: “Zookeeper之进阶篇”date: 2016-07-20 15:31comments: truetags: - 分布式 - Zookeeper 前言在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper. HelloD-Zookeperr1.创建一个Maven工程配置Pom.xml文件">
 <meta name="twitter:image" content="http://yoursite.com/assets/blogImg/zookeeper_watch.png">
   
     <link rel="alternative" href="/atom.xml" title="Shawn" type="application/atom+xml">
@@ -165,7 +165,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>layout: post title: “Zookeeper之进阶篇” date: 2016-07-20 15:31 comments: true tags: - 分布式 - Zookeeper</p>
+        <p>layout: post<br>title: “Zookeeper之进阶篇”<br>date: 2016-07-20 15:31<br>comments: true<br>tags: - 分布式 - Zookeeper</p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper.</p>
 <h1 id="HelloD-Zookeperr"><a href="#HelloD-Zookeperr" class="headerlink" title="HelloD-Zookeperr"></a>HelloD-Zookeperr</h1><p>1.创建一个Maven工程配置Pom.xml文件内容如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;com.101tec&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;zkclient&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;0.10&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;zookeeper&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;3.4.9&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;log4j&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;log4j&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.2.17&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
@@ -410,15 +410,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -427,6 +419,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">旧事</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Zookeeper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
