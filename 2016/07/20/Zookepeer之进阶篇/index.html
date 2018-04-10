@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | Shawn</title>
+  <title>Zookeeper之进阶篇 | Shawn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="��Ϸ������">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shawn">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="前言在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper. HelloD-Zookeperr1.创建一个Maven工程配置Pom.xml文件内容如下 12345678910111213141516 &amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;com.101tec&amp;lt;/groupId&amp;gt;  &amp;l">
+<meta name="keywords" content="分布式,Zookeeper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zookeeper之进阶篇">
+<meta property="og:url" content="http://yoursite.com/2016/07/20/Zookepeer之进阶篇/index.html">
 <meta property="og:site_name" content="Shawn">
-<meta property="og:description" content="��Ϸ������">
+<meta property="og:description" content="前言在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper. HelloD-Zookeperr1.创建一个Maven工程配置Pom.xml文件内容如下 12345678910111213141516 &amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;com.101tec&amp;lt;/groupId&amp;gt;  &amp;l">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/zookeeper_watch.png">
+<meta property="og:updated_time" content="2018-04-10T12:47:42.198Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shawn">
-<meta name="twitter:description" content="��Ϸ������">
+<meta name="twitter:title" content="Zookeeper之进阶篇">
+<meta name="twitter:description" content="前言在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper. HelloD-Zookeperr1.创建一个Maven工程配置Pom.xml文件内容如下 12345678910111213141516 &amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;com.101tec&amp;lt;/groupId&amp;gt;  &amp;l">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/zookeeper_watch.png">
   
     <link rel="alternative" href="/atom.xml" title="Shawn" type="application/atom+xml">
   
@@ -157,43 +161,197 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Zookepeer之进阶篇" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Zookeeper之进阶篇
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/10/Zookepeer之进阶篇/" class="archive-article-date">
-  	<time datetime="2018-04-10T12:36:03.188Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+        
+        <a href="/2016/07/20/Zookepeer之进阶篇/" class="archive-article-date">
+  	<time datetime="2016-07-20T07:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在了解了基础篇,Linux下Zookeepeer哪些指令现在我们来了解，在企业级开发中，应该如何使用和配置Zookeeper.</p>
+<h1 id="HelloD-Zookeperr"><a href="#HelloD-Zookeperr" class="headerlink" title="HelloD-Zookeperr"></a>HelloD-Zookeperr</h1><p>1.创建一个Maven工程配置Pom.xml文件内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;com.101tec&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;zkclient&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;0.10&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;zookeeper&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;3.4.9&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;log4j&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;log4j&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.2.17&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>2.HelloZK</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line"> </span><br><span class="line">import org.apache.log4j.Logger;</span><br><span class="line">import org.apache.zookeeper.CreateMode;</span><br><span class="line">import org.apache.zookeeper.KeeperException;</span><br><span class="line">import org.apache.zookeeper.WatchedEvent;</span><br><span class="line">import org.apache.zookeeper.Watcher;</span><br><span class="line">import org.apache.zookeeper.ZooDefs.Ids;</span><br><span class="line">import org.apache.zookeeper.ZooKeeper;</span><br><span class="line">import org.apache.zookeeper.data.Stat;</span><br><span class="line"> </span><br><span class="line">public class HelloZK</span><br><span class="line">&#123;</span><br><span class="line">   /**</span><br><span class="line">   * Logger for this class</span><br><span class="line">   */</span><br><span class="line">   private static final Logger logger = Logger.getLogger(HelloZK.class);</span><br><span class="line">   </span><br><span class="line">   private static final String CONNECTSTRING = &quot;IP:2181&quot;;</span><br><span class="line">   private static final String PATH = &quot;/TNode&quot;;</span><br><span class="line">   private static final int    SESSION_TIMEOUT = 50*1000;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   //获取Zookeeper对象</span><br><span class="line">   public ZooKeeper startZK() throws IOException</span><br><span class="line">   &#123;</span><br><span class="line">       return new ZooKeeper(CONNECTSTRING, SESSION_TIMEOUT, new Watcher() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void process(WatchedEvent event)</span><br><span class="line">          &#123;</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">   //停止断开ZK</span><br><span class="line">   public void stopZK(ZooKeeper zk) throws InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       if(zk != null)</span><br><span class="line">       &#123;</span><br><span class="line">          zk.close();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   //创建ZNode</span><br><span class="line">   public void createZNode(ZooKeeper zk,String path,String nodeValue) throws KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       zk.create(path,nodeValue.getBytes(),Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT);</span><br><span class="line">   &#125;</span><br><span class="line">   //获取内容值</span><br><span class="line">   public String getZNode(ZooKeeper zk,String path) throws KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       byte[] byteArray = zk.getData(path, false, new Stat());</span><br><span class="line">       return new String(byteArray);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public static void main(String[] args) throws IOException, KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       HelloZK hello = new HelloZK();</span><br><span class="line">       </span><br><span class="line">       ZooKeeper zk = hello.startZK();</span><br><span class="line">       </span><br><span class="line">       Stat stat = zk.exists(PATH, false);</span><br><span class="line">       </span><br><span class="line">       if(stat == null)</span><br><span class="line">       &#123;</span><br><span class="line">          hello.createZNode(zk, PATH, &quot;zk1014&quot;);</span><br><span class="line">          String result = hello.getZNode(zk, PATH);</span><br><span class="line">          System.out.println(&quot;**********result: &quot;+result);</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">          System.out.println(&quot;***********znode has already ok***********&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       hello.stopZK(zk);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Watch"><a href="#Watch" class="headerlink" title="Watch"></a>Watch</h3><p>HelloZK中只是简单的通过连接并且创建ZNode节点，并没有起到集群中的通知机制，那么ZK的通知机制到底是如何实现的呢？原理图附上</p>
+<p></p><p><img src="/assets/blogImg/zookeeper_watch.png" alt="" width="450"></p><p></p>
+<h2 id="Watch-是什么？"><a href="#Watch-是什么？" class="headerlink" title="Watch 是什么？"></a>Watch 是什么？</h2><p>概述 :在Zookeeper支持watch(观察)的概念。客户端（即一个SSM服务）可以在znode节点上设置一个watch.如果被观察服务端的znode节点发生了变更，那么watch就会立刻触发，这个watch所属的客户端将接收到一个通知包告知节点已经发生了变化，并把相应的事件通知给相关的客户端.</p>
+<p>一句话总结:watch就是异步回调的触发机制.</p>
+<h2 id="Watch的优良特性"><a href="#Watch的优良特性" class="headerlink" title="Watch的优良特性"></a>Watch的优良特性</h2><p>时序性:当一个客户端连接到服务端，watch会触发任何的session事件（注册当前客户端信息），当连接断开后，不再接受Zookeeper控制。当客户端重连，先前注册的watches将被重新触发。</p>
+<p>一致性：客户端在看到数据修改以后会先看到watch事件.(加入Zk服务端数据发生改变,100个客户端触发watch事件，第99个客户端未触发watch事件之前，前98个客户端无法看到数据的改变)</p>
+<h2 id="Watch的三种观察模式"><a href="#Watch的三种观察模式" class="headerlink" title="Watch的三种观察模式"></a>Watch的三种观察模式</h2><p>==一次性观察==：指zk数据发生改变，watch执行一次回调，然后从此不再回调.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">import java.io .IOException;</span><br><span class="line">import org.apache.log4j.Logger;</span><br><span class="line">import org.apache.zookeeper.CreateMode;</span><br><span class="line">import org.apache.zookeeper.KeeperException;</span><br><span class="line">import org.apache.zookeeper.WatchedEvent;</span><br><span class="line">import org.apache.zookeeper.Watcher;</span><br><span class="line">import org.apache.zookeeper.ZooKeeper;</span><br><span class="line">import org.apache.zookeeper.ZooDefs.Ids;</span><br><span class="line">import org.apache.zookeeper.data.Stat;</span><br><span class="line"></span><br><span class="line">public class WatchOne</span><br><span class="line">&#123;</span><br><span class="line">   private static final Logger logger = Logger.getLogger(HelloZK.class);</span><br><span class="line">   //定义常量</span><br><span class="line">   private static final String CONNECTSTRING = &quot;192.168.67.167:2181&quot;;</span><br><span class="line">   private static final String PATH = &quot;/TNode&quot;;</span><br><span class="line">   private static final int    SESSION_TIMEOUT = 50*1000;</span><br><span class="line">   //定义实例变量</span><br><span class="line">   private ZooKeeper zk = null;</span><br><span class="line"> </span><br><span class="line">   //以下为业务方法</span><br><span class="line">   public ZooKeeper startZK() throws IOException</span><br><span class="line">   &#123;</span><br><span class="line">       return new ZooKeeper(CONNECTSTRING, SESSION_TIMEOUT, new Watcher() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void process(WatchedEvent event)</span><br><span class="line">          &#123;</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public void stopZK() throws InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       if(zk != null)</span><br><span class="line">       &#123;</span><br><span class="line">          zk.close();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public void createZNode(String path,String nodeValue) throws KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       zk.create(path,nodeValue.getBytes(),Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public String getZNode(String path) throws KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       byte[] byteArray = zk.getData(path,new Watcher() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void process(WatchedEvent event)</span><br><span class="line">          &#123;</span><br><span class="line">              try </span><br><span class="line">              &#123;</span><br><span class="line">                 triggerValue(path);</span><br><span class="line">              &#125;catch (KeeperException | InterruptedException e) &#123;</span><br><span class="line">                 e.printStackTrace();</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;, new Stat());</span><br><span class="line">       return new String(byteArray);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public String triggerValue(String path) throws KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       byte[] byteArray = zk.getData(path,false, new Stat());</span><br><span class="line">       String retValue = new String(byteArray);</span><br><span class="line">       System.out.println(&quot;**************triggerValue: &quot;+retValue);</span><br><span class="line">       return retValue;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public static void main(String[] args) throws IOException, KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       WatchOne watchOne = new WatchOne();</span><br><span class="line">       </span><br><span class="line">       watchOne.setZk(watchOne.startZK());</span><br><span class="line">       </span><br><span class="line">       if(watchOne.getZk().exists(PATH, false) == null)</span><br><span class="line">       &#123;</span><br><span class="line">          watchOne.createZNode(PATH,&quot;BBB&quot;);</span><br><span class="line">          System.out.println(&quot;**********************&gt;: &quot;+watchOne.getZNode(PATH));</span><br><span class="line">          Thread.sleep(Long.MAX_VALUE);</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">          System.out.println(&quot;i have znode&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   //setter---getter</span><br><span class="line">   public ZooKeeper getZk()</span><br><span class="line">   &#123;</span><br><span class="line">       return zk;</span><br><span class="line">   &#125;</span><br><span class="line">   public void setZk(ZooKeeper zk)</span><br><span class="line">   &#123;</span><br><span class="line">       this.zk = zk;</span><br><span class="line">   &#125;  </span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>==多次观察模式==:即观察到ZK发生改变就会发生回调，不改变则不回调</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">import java.io </span><br><span class="line"></span><br><span class="line">.IOException;</span><br><span class="line"> </span><br><span class="line">import org.apache.log4j.Logger;</span><br><span class="line">import org.apache.zookeeper.CreateMode;</span><br><span class="line">import org.apache.zookeeper.KeeperException;</span><br><span class="line">import org.apache.zookeeper.WatchedEvent;</span><br><span class="line">import org.apache.zookeeper.Watcher;</span><br><span class="line">import org.apache.zookeeper.ZooKeeper;</span><br><span class="line">import org.apache.zookeeper.ZooDefs.Ids;</span><br><span class="line">import org.apache.zookeeper.data.Stat;</span><br><span class="line"> </span><br><span class="line">public class WatchMoreTest</span><br><span class="line">&#123;</span><br><span class="line">   /**</span><br><span class="line">   * Logger for this class</span><br><span class="line">   */</span><br><span class="line">   private static final Logger logger = Logger.getLogger(HelloZK.class);</span><br><span class="line">   //定义常量</span><br><span class="line">   private static final String CONNECTSTRING = &quot;192.168.67.167:2181 </span><br><span class="line"></span><br><span class="line">&quot;;</span><br><span class="line">   private static final String PATH = &quot;/TNode&quot;;</span><br><span class="line">   private static final int    SESSION_TIMEOUT = 50*1000;</span><br><span class="line">   //定义实例变量</span><br><span class="line">   private ZooKeeper zk = null;</span><br><span class="line">   private String lastValue = &quot;&quot;;</span><br><span class="line">   </span><br><span class="line">   //以下为业务方法</span><br><span class="line">   public ZooKeeper startZK() throws IOException</span><br><span class="line">   &#123;</span><br><span class="line">       return new ZooKeeper(CONNECTSTRING, SESSION_TIMEOUT, new Watcher() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void process(WatchedEvent event)</span><br><span class="line">          &#123;&#125;</span><br><span class="line">       &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public void stopZK() throws InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       if(zk != null)</span><br><span class="line">       &#123;</span><br><span class="line">          zk.close();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public void createZNode(String path,String nodeValue) throws KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       zk.create(path,nodeValue.getBytes(),Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public String getZNode(String path) throws KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       byte[] byteArray = zk.getData(path,new Watcher() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void process(WatchedEvent event)</span><br><span class="line">          &#123;</span><br><span class="line">              try </span><br><span class="line">              &#123;</span><br><span class="line">                 triggerValue(path);</span><br><span class="line">              &#125;catch (KeeperException | InterruptedException e) &#123;</span><br><span class="line">                 e.printStackTrace();</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;, new Stat());</span><br><span class="line">       </span><br><span class="line">       return new String(byteArray);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public boolean triggerValue(String path) throws KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       byte[] byteArray = zk.getData(path,new Watcher() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void process(WatchedEvent event)</span><br><span class="line">          &#123;</span><br><span class="line">              try </span><br><span class="line">              &#123;</span><br><span class="line">                 triggerValue(path);</span><br><span class="line">              &#125;catch (KeeperException | InterruptedException e) &#123;</span><br><span class="line">                 e.printStackTrace();</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;, new Stat());</span><br><span class="line">       </span><br><span class="line">       String newValue = new String(byteArray);</span><br><span class="line">       </span><br><span class="line">       if(lastValue.equals(newValue))</span><br><span class="line">       &#123;</span><br><span class="line">          System.out.println(&quot;there is no change~~~~~~~~&quot;);</span><br><span class="line">          return false;</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">          System.out.println(&quot;lastValue: &quot;+lastValue+&quot;\t&quot;+&quot;newValue: &quot;+newValue);</span><br><span class="line">          this.lastValue = newValue;</span><br><span class="line">          return true;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   public static void main(String[] args) throws IOException, KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       WatchMoreTest watch = new WatchMoreTest();</span><br><span class="line">       </span><br><span class="line">       watch.setZk(watch.startZK());</span><br><span class="line">       </span><br><span class="line">       if(watch.getZk().exists(PATH, false) == null)</span><br><span class="line">       &#123;</span><br><span class="line">          String initValue = &quot;0000&quot;;</span><br><span class="line">          watch.setLastValue(initValue);</span><br><span class="line">          watch.createZNode(PATH,initValue);</span><br><span class="line">          System.out.println(&quot;**********************&gt;: &quot;+watch.getZNode(PATH));</span><br><span class="line">          Thread.sleep(Long.MAX_VALUE);</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">          System.out.println(&quot;i have znode&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   //setter---getter</span><br><span class="line">   public ZooKeeper getZk()</span><br><span class="line">   &#123;</span><br><span class="line">       return zk;</span><br><span class="line">   &#125;</span><br><span class="line">   public void setZk(ZooKeeper zk)</span><br><span class="line">   &#123;</span><br><span class="line">       this.zk = zk;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public String getLastValue()</span><br><span class="line">   &#123;</span><br><span class="line">       return lastValue;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public void setLastValue(String lastValue)</span><br><span class="line">   &#123;</span><br><span class="line">       this.lastValue = lastValue;</span><br><span class="line">   &#125;  </span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>==子节点观察模式==:顾名思义就是当子节点发生改变会触发watch时间进行回调</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">import java.io .IOException;</span><br><span class="line">import java.util.List;</span><br><span class="line"> </span><br><span class="line">import org.apache.log4j.Logger;</span><br><span class="line">import org.apache.zookeeper.CreateMode;</span><br><span class="line">import org.apache.zookeeper.KeeperException;</span><br><span class="line">import org.apache.zookeeper.WatchedEvent;</span><br><span class="line">import org.apache.zookeeper.Watcher;</span><br><span class="line">import org.apache.zookeeper.Watcher.Event.EventType;</span><br><span class="line">import org.apache.zookeeper.ZooDefs.Ids;</span><br><span class="line">import org.apache.zookeeper.ZooKeeper;</span><br><span class="line">import org.apache.zookeeper.data.Stat;</span><br><span class="line"> </span><br><span class="line">public class WatchChildNode</span><br><span class="line">&#123;</span><br><span class="line">   /**</span><br><span class="line">   * Logger for this class</span><br><span class="line">   */</span><br><span class="line">   private static final Logger logger = Logger.getLogger(HelloZK.class);</span><br><span class="line">   //定义常量</span><br><span class="line">   private static final String CONNECTSTRING = &quot;192.168.67.167:2181 </span><br><span class="line"></span><br><span class="line">&quot;;</span><br><span class="line">   private static final String PATH = &quot;/TNode&quot;;</span><br><span class="line">   private static final int    SESSION_TIMEOUT = 50*1000;</span><br><span class="line">   //定义实例变量</span><br><span class="line">   private ZooKeeper zk = null;</span><br><span class="line">   </span><br><span class="line">   //以下为业务方法</span><br><span class="line">   public ZooKeeper startZK() throws IOException</span><br><span class="line">   &#123;</span><br><span class="line">       return new ZooKeeper(CONNECTSTRING, SESSION_TIMEOUT, new Watcher() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void process(WatchedEvent event)</span><br><span class="line">          &#123;</span><br><span class="line">              if(event.getType() == EventType.NodeChildrenChanged &amp;&amp; event.getPath().equals(PATH))</span><br><span class="line">              &#123;</span><br><span class="line">                 showChildLists(PATH);</span><br><span class="line">              &#125;else&#123;</span><br><span class="line">                 showChildLists(PATH);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public void stopZK() throws InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       if(zk != null)</span><br><span class="line">       &#123;</span><br><span class="line">          zk.close();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public void showChildLists(String path)</span><br><span class="line">   &#123;</span><br><span class="line">       List&lt;String&gt; list = null;</span><br><span class="line">       try </span><br><span class="line">       &#123;</span><br><span class="line">          list = zk.getChildren(PATH, true);</span><br><span class="line">       &#125;catch (KeeperException | InterruptedException e) &#123;</span><br><span class="line">          e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">       System.out.println(&quot;**********showChildLists: &quot;+list);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   public static void main(String[] args) throws IOException, KeeperException, InterruptedException</span><br><span class="line">   &#123;</span><br><span class="line">       WatchChildNode watch = new WatchChildNode();</span><br><span class="line">       </span><br><span class="line">       watch.setZk(watch.startZK());</span><br><span class="line">       </span><br><span class="line">       Thread.sleep(Long.MAX_VALUE);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   //setter---getter</span><br><span class="line">   public ZooKeeper getZk()</span><br><span class="line">   &#123;</span><br><span class="line">       return zk;</span><br><span class="line">   &#125;</span><br><span class="line">   public void setZk(ZooKeeper zk)</span><br><span class="line">   &#123;</span><br><span class="line">       this.zk = zk;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Zookeeper</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2016/07/20/Zookepeer之进阶篇/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/01/26/diary-2017-0118-0125/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          回乡偶书 1.18 - 1.25
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2016/07/13/Zookeeper之入门篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Zookeeper之入门篇</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -217,8 +375,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -291,6 +449,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
@@ -299,15 +461,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旧事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">旧事</a>
               </li>
             
             <div class="clearfix"></div>
